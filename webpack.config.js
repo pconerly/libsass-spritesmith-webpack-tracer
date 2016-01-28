@@ -35,15 +35,8 @@ var config = [{
   output: {
     path: path.join(BUILD_ROOT, 'js'),
     filename: "app.js",
-    // filename: "[name].[hash].js",
-    // chunkFilename: "[id].[hash].chunk.js",
   },
   plugins: [
-    // new webpack.optimize.CommonsChunkPlugin({
-    //     name: 'commons.chunk',
-    //     filename: "commons.chunk.[hash].js"}),
-    // new BundleTracker({path: BUILD_ROOT, filename: './webpack-stats.json'}),
-    // new webpack.optimize.OccurenceOrderPlugin(),
   ],
   cache: true,
   resolve: {
@@ -58,18 +51,23 @@ var config = [{
   },
   module: {
     loaders: [
-      // { test: /\.scss$/,     loader: "style-loader!raw-loader!sass-loader"},
     ],
   },
   watchDelay: 0,
   devtool: 'eval',
 
 }, {
-  name: 'sprites',
+  name: 'sprites-and-css',
   context: SASS_ROOT,
+  entry: {
+    fashion: './fashion.scss',
+  },
   output: {
     path: path.join(BUILD_ROOT, 'css'),
     filename: "fuckyouwebpack.js",
+  },
+  resolve: {
+    extensions: ['', '.scss'],
   },
   module: {
     loaders: [
@@ -79,8 +77,13 @@ var config = [{
       {test: /\.jpg$/, loaders: [
           'file?name=i/[hash].[ext]'
       ]},
+      { 
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract("style-loader", "raw-loader!sass-loader?debug_info=true")
+      },
     ],
   },
+  watchDelay: 0,
   devtool: 'eval',
   plugins: [
       new SpritesmithPlugin({
@@ -108,41 +111,11 @@ var config = [{
           apiOptions: {
               cssImageRef: "sprite.png"
           }
-      })
+      }),
+      new ExtractTextPlugin("[name].css"),
   ]
 
 },
-{
-  name: 'css',
-  context: SASS_ROOT,
-  entry: {
-    fashion: './fashion.scss',
-  },
-  output: {
-    path: path.join(BUILD_ROOT, 'css'),
-    filename: "fuckyouwebpack.js",
-  },
-  cache: true,
-  resolve: {
-    extensions: ['', '.scss'],
-  },
-  module: {
-    loaders: [
-      { 
-        test: /\.scss$/,
-        // loader: "style-loader!raw-loader!sass-loader"
-        // loader: "style-loader!raw-loader!sass-loader"
-        loader: ExtractTextPlugin.extract("style-loader", "raw-loader!sass-loader?debug_info=true")
-      },
-    ],
-  },
-  watchDelay: 0,
-  devtool: 'eval',
-  plugins: [
-      new ExtractTextPlugin("[name].css"),
-  ]
-}
-
 ]
 
 

@@ -1,0 +1,37 @@
+@import "../spritesmith-generated/sprite-jpg.scss";
+
+
+#content {
+  border: 2px solid red;
+  margin: 40px;
+
+  .thing {
+    border: 1px solid green;
+
+    &.one {
+      border: 1px solid black;
+      height: 100px;
+      width: 100px;
+      color: $golemman-name;
+      /* @extend .icon-golemman; */
+      @include sprite($golemman);
+    }
+    &.two {
+      border: 1px solid blue;
+      height: 100px;
+      width: 100px;
+      // @extend .icon-abot;
+    }
+  }
+}
+
+
+// profile.jpeg
+// abot.jpg
+// Ad_default.jpg
+// Ad_default.png
+// Ad_hover.jpg
+// Ad_hover.png
+// golemman.jpg
+// Kyoto_block_of_ice.jpg
+// linkedin_profile.jpg

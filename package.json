@@ -1,0 +1,23 @@
+{
+  "name": "libsass-sprite-test",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "webpack-dev": "./node_modules/.bin/webpack --config=webpack.config.js --progress --colors",
+    "webpack-dev-watch": "./node_modules/.bin/webpack --config=webpack.config.js --progress --colors --watch",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "extract-text-webpack-plugin": "^1.0.1",
+    "node-sass": "^3.4.2",
+    "path-parse": "^1.0.5",
+    "raw-loader": "^0.5.1",
+    "sass-loader": "^3.1.2",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.11",
+    "webpack-spritesmith": "0.0.3"
+  }
+}
